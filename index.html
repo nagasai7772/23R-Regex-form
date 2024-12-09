@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link rel="stylesheet" href="Pattern.css" />
+  </head>
+  <body>
+    <div class="container">
+      <center><h2>Email-form</h2></center> <br><br>
+      
+      <form action="" id="form">
+        <label for="name"> Fullname </label>
+        <input type="text" name="" id="name" />
+        <span id="name_error"></span>
+        <label for="number">Mobile number</label>
+        <input type="tel" name="" id="Mobilenumber" />
+        <span id="num_error"></span>
+        <label for="">DOB</label>
+        <input type="text" name="" id="DOB" placeholder="DD/MM/YYYY" />
+        <span id="DOB_Error"></span>
+        <label for="">Email</label>
+        <input type="email" name="" id="Email" />
+        <span id="Email_Error"></span>
+        <label for="password">password</label>
+        <input type="text" name="" id="password" />
+        <span id="password_Error"></span>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      let form=document.getElementById("form")
+      let Fullname = document.getElementById("name");
+      let name_error = document.getElementById("name_error");
+      let namepattern = /[A-Za-z]/;
+      let Mobilenumber = document.getElementById("Mobilenumber");
+      let num_error = document.getElementById("num_error");
+      let numberpattern = /[0-9{1,10}]/;
+      let DOB = document.getElementById("DOB");
+      let DOB_Error = document.getElementById("DOB_Error");
+      let DOB_pattern = /\d{2}\-d{2}\-d{4}/;
+      let Email = document.getElementById("Email");
+      let Email_Error = document.getElementById("Email_Error");
+      let Email_pattern = /[\w._]+@[a-z]+\.[a-z]{2,3}/;
+      let password = document.getElementById("password");
+      let password_Error = document.getElementById("password_Error");
+      let password_pattern =
+        /(=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#%$^*])[A-Za-z0-9]{8}/g;
+
+      Fullname.addEventListener("input", (e) => {
+        const isvalid = namepattern.test(e.target.value);
+        if (!isvalid) {
+          name_error.style.display = "block";
+          name_error.innerHTML = "Enter valid name";
+          name_error.style.color = "red";
+        } else {
+          name_error.innerHTML = "";
+        }
+      });
+
+      Mobilenumber.addEventListener("input", (e) => {
+        const numbervalid = numberpattern.test(e.target.value);
+        if (!numbervalid) {
+          num_error.style.display = "block";
+          num_error.innerHTML = "Enter valid number";
+          num_error.style.color = "red";
+        } else {
+          num_error.style.display = "none";
+        }
+      });
+      DOB.addEventListener("input", (e) => {
+        const DOB_valid = DOB_pattern.test(e.target.value);
+
+        if (!DOB_valid) {
+          DOB_Error.style.display = "block";
+          DOB_Error.innerHTML = "Enter valid DOB";
+          DOB_Error.style.color = "Red";
+          console.log("valid");
+        } else {
+          DOB_Error.style.display = "none";
+        }
+      });
+
+      Email.addEventListener("input", (e) => {
+        const Emailvalid = Email_pattern.test(e.target.value);
+        if (!Emailvalid) {
+          Email_Error.style.display = "block";
+          Email_Error.innerHTML = "Enter valid email";
+          Email_Error.style.color = "red";
+        } else {
+          Email_Error.style.display = "none";
+        }
+      });
+
+      password.addEventListener("input", (e) => {
+        if (!password_pattern.test(e.target.value)) {
+          password_Error.style.display = "block";
+          password_Error.innerHTML = "Enter valid password";
+          password_Error.style.color = "red";
+        } else {
+          password_Error.style.display = "none";
+        }
+      });
+     let allinputs=document.querySelectorAll('input')
+    form.addEventListener("submit",()=>
+  {
+    if(allinputs.value==" "||allinputs.value==null)
+  {
+    allinputs.style.borderColor="red"
+  }
+  })
+    </script>
+  </body>
+</html>
