@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form</title>
     <link rel="stylesheet" href="index.css" />
+    
   </head>
   <body>
     <div class="container">
@@ -14,18 +15,23 @@
         <label for="name"> Fullname </label>
         <input type="text" name="" id="name" />
         <span id="name_error"></span>
+        <span id="Empty1"></span>
         <label for="number">Mobile number</label>
         <input type="tel" name="" id="Mobilenumber" />
         <span id="num_error"></span>
+        <span id="Empty2"></span>
         <label for="">DOB</label>
-        <input type="text" name="" id="DOB" placeholder="DD/MM/YYYY" />
+        <input type="text" name="" id="DOB" placeholder="DD-MM-YYYY" />
         <span id="DOB_Error"></span>
+        <span id="Empty3"></span>
         <label for="">Email</label>
         <input type="email" name="" id="Email" />
         <span id="Email_Error"></span>
+        <span id="Empty4"></span>
         <label for="password">password</label>
         <input type="text" name="" id="password" />
         <span id="password_Error"></span>
+        <span id="Empty5"></span>
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -37,10 +43,10 @@
       let namepattern = /[A-Za-z]/;
       let Mobilenumber = document.getElementById("Mobilenumber");
       let num_error = document.getElementById("num_error");
-      let numberpattern = /[0-9{1,10}]/;
+      let numberpattern = /[6-9{10}]/;
       let DOB = document.getElementById("DOB");
       let DOB_Error = document.getElementById("DOB_Error");
-      let DOB_pattern = /\d{2}\-d{2}\-d{4}/;
+      let DOB_pattern = /\d{2}-\d{2}-\d{4}/;
       let Email = document.getElementById("Email");
       let Email_Error = document.getElementById("Email_Error");
       let Email_pattern = /[\w._]+@[a-z]+\.[a-z]{2,3}/;
@@ -48,6 +54,15 @@
       let password_Error = document.getElementById("password_Error");
       let password_pattern =
         /(=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#%$^*])[A-Za-z0-9]{8}/g;
+        let Name_empty=document.getElementById("Empty1")
+        let Mobile_Empty=document.getElementById("Empty2")
+        let DOB_Empty=document.getElementById("Empty3")
+        let Email_Empty=document.getElementById("Empty4")
+        let password_Empty=document.getElementById("Empty5")
+            
+        
+
+
 
       Fullname.addEventListener("input", (e) => {
         const isvalid = namepattern.test(e.target.value);
@@ -104,11 +119,45 @@
         }
       });
      let allinputs=document.querySelectorAll('input')
-    form.addEventListener("submit",()=>
+    form.addEventListener("submit",(e)=>
   {
-    if(allinputs.value==" "||allinputs.value==null)
+    e.preventDefault();
+   if(Fullname.value=="")
   {
-    allinputs.style.borderColor="red"
+    Fullname.style.border="3px solid red";
+    Name_empty.style.display="block"
+    Name_empty.innerHTML="*Field should not be Empty*"
+    Name_empty.style.color="red"
+  }
+  if(password.value=="")
+  {
+    password.style.border="3px solid red";
+    password_Empty.style.display="block"
+    password_Empty.innerHTML="*Field should not be Empty*"
+    password_Empty.style.color="red"
+
+  }
+  if(Mobilenumber.value=="")
+  {
+    Mobilenumber.style.border="3px solid red";
+    Mobile_Empty.style.display="block"
+    Mobile_Empty.innerHTML="*Field should not be Empty*"
+    Mobile_Empty.style.color="red"
+
+  }
+  if(DOB.value=="")
+  {
+    DOB.style.border="3px solid red"
+    DOB_Empty.style.display="block"
+    DOB_Empty.innerHTML="*Field should not be Empty*"
+    DOB_Empty.style.color="red"
+  }
+  if(Email.value=="")
+  {
+    Email.style.border="3px solid red"
+    Email_Empty.style.display="block"
+    Email_Empty.innerHTML="*Field should not be Empty*"
+    Email_Empty.style.color="red"
   }
   })
     </script>
